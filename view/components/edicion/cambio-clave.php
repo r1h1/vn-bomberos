@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 include('../../../data/conection.php');
 
 $identificacion = $_POST['identificacion'];

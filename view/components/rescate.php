@@ -7,6 +7,8 @@ $varnombre = $_SESSION['nombre'];
 
 $nombrePersonaLogueada = $varnombre;
 
+error_reporting(0);
+
 if ($varsesion == null || $varsesion = '') {
     echo '<script type="text/javascript">
             window.location.href="../../index.php?status=2";

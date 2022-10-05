@@ -2,6 +2,8 @@
 
 include('../../../data/conection.php');
 
+error_reporting(0);
+
 $identificacion = $_POST['identificacion'];
 $nuevaContrasena = $_POST['nuevaContrasena'];
 

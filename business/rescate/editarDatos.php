@@ -2,7 +2,7 @@
 
 include('../../data/conection.php');
 
-//error_reporting(0);
+error_reporting(0);
 
 
 $idEdicion = $_POST['idEdicionID'];

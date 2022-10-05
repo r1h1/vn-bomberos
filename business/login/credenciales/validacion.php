@@ -2,6 +2,8 @@
 
 include('../../../data/conection.php');
 
+error_reporting(0);
+
 $sUsuario = $_POST['usuario'];
 $sClave = $_POST['clave'];
 

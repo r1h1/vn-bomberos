@@ -2,6 +2,7 @@
 
 include("../../data/conection.php");
 
+error_reporting(0);
 
 $controlCorrelativo = $_POST['controlCorrelativo'];
 $fechaActual = $_POST['fechaGeneracion'];

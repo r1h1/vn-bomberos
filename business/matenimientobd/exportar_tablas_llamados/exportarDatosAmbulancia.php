@@ -6,6 +6,8 @@ header("Content-Type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=" . $filename);
 header("Pragma: no-cache");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+error_reporting(0);
 ?>
 
 <h1 class="text-center">Todas las llamadas - Ambulancia</h1>

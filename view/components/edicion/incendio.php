@@ -4,6 +4,8 @@ $varsesion = $_SESSION['usuario'];
 $varpermiso = $_SESSION['rol'];
 $varnombre = $_SESSION['nombre'];
 
+error_reporting(0);
+
 $nombrePersonaLogueada = $varnombre;
 
 if ($varsesion == null || $varsesion = '') {
