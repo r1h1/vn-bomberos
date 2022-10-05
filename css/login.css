@@ -1,0 +1,32 @@
+/* Specific CSS from index.html (Client) */
+
+body {
+    background: #0269c1;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .container-sm {
+    width: 400px;
+  }
+  
+  .container-sm .login-card {
+    margin: 80px 0px 50px 0px;
+    border-radius: 18px;
+  }
+  
+  .login-container {
+    border-radius: 18px;
+  }
+
+  .login-container a{
+    color: #606060;
+    text-decoration: underline;
+    font-size: 15px;
+  }
+
+  @media (max-width: 400px) {
+    .container-sm {
+      width: 90%;
+    }
+  }
