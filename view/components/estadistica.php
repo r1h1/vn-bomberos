@@ -1,12 +1,13 @@
 <?php
+
+error_reporting(0);
+
 session_start();
 $varsesion = $_SESSION['usuario'];
 $varpermiso = $_SESSION['rol'];
 $varnombre = $_SESSION['nombre'];
 
 $nombrePersonaLogueada = $varnombre;
-
-error_reporting(0);
 
 if ($varsesion == null || $varsesion = '') {
     echo '<script type="text/javascript">
@@ -247,7 +248,7 @@ if ($varsesion == null || $varsesion = '') {
                 </div>
                 <div class="card-footer mt-4">
                     <p class="mt-2 text-muted h6">En la pantalla estadística puedes ver un resumen general de todas las llamadas que se han registrado,
-                        a su vez, puedes filtrar por las categorías disponibles, por fechas o buscar un dato en especíco, puedes generar
+                        a su vez, puedes filtrar por las categorías disponibles, por fechas o buscar un dato en específico, puedes generar
                         un reporte en PDF de la incidencia, <span class="fw-bold text-decoration-underline">si deseas editar o eliminar, puedes hacerlo
                             desde la opción correspondiente a la categoría en el menú de opciones</span>.</p>
                 </div>

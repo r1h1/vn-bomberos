@@ -1,12 +1,13 @@
 <?php
+
+error_reporting(0);
+
 session_start();
 $varsesion = $_SESSION['usuario'];
 $varpermiso = $_SESSION['rol'];
 $varnombre = $_SESSION['nombre'];
 
 $nombrePersonaLogueada = $varnombre;
-
-error_reporting(0);
 
 if ($varsesion == null || $varsesion = '') {
   echo '<script type="text/javascript">

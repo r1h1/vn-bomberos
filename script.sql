@@ -516,7 +516,7 @@ create procedure cambiarContrasenaPersonalPorIdentificacion(
     in varNoIdentificacion varchar(100)
 )
 begin
-	UPDATE `personal_estacion` SET `contrasena`= varContrasenaNueva WHERE `noIdentificaci   on`= varNoIdentificacion;
+	UPDATE `personal_estacion` SET `contrasena`= varContrasenaNueva WHERE `noIdentificacion`= varNoIdentificacion;
 end //
 DELIMITER ;
 
