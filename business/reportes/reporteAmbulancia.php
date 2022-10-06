@@ -66,6 +66,7 @@ if ($varsesion == null || $varsesion = '') {
             border: 1px solid;
             border-color: #000000;
             padding: 2px;
+            height: 1190px;
         }
     </style>
 
@@ -74,7 +75,7 @@ if ($varsesion == null || $varsesion = '') {
             <div class="col-md-2">
                 <img src="../../img/logo.jpg" alt="logo-bomberos" width="70px" height="auto">
             </div>
-            <div class="col-md-10 mt-4 text-center">
+            <div class="col-md-10 text-center" style="margin-top: -50px;">
                 <h1 class="fw-bold h6">BENEMERITO CUERPO VOLUNTARIO DE BOMBEROS DE GUATEMALA</h1>
                 <h2 class="text-center fw-bold h6">REPORTE DE AMBULANCIA</h2>
             </div>
@@ -119,7 +120,7 @@ if ($varsesion == null || $varsesion = '') {
 
     ?>
 
-        <main class="container mt-4">
+        <main class="container mt-5">
             <div class="row">
                 <div class="col">
                     <p class="h6">Control: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['controlCorrelativo']; ?></span></p>
@@ -152,13 +153,13 @@ if ($varsesion == null || $varsesion = '') {
                     <textarea class="form-control" style="height: 140px" maxlength="400" readonly><?php echo $mostrar['observaciones']; ?></textarea>
                 </div>
 
-                <div class="col mt-4">
+                <div class="col mt-5">
                     <p class="h6">Reporte Por: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[24]; ?></span></p>
                     <p class="h6">Es conforme el Piloto: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[25]; ?></span></p>
                     <p class="h6">Vo.Bo. Jefe de Servicio: <span class="ms-3"></span></p>
                 </div>
 
-                <div class="col mt-4 text-end">
+                <div class="col mt-4">
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
