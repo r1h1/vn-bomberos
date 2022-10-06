@@ -21,13 +21,13 @@ $query = "INSERT INTO `llamado_incendio`(`controlCorrelativo`, `fechaGeneracion`
 `horaSalidaEstacion`, `entradaEstacion`, `horaEntradaEstacion`, `propietarioInmueble`, 
 `sitioDondePrincipioElIncendio`, `causasIncendio`, `valorAproximadoInmueble`, `montoAproximadoPerdidasInmueble`,
 `compañiaAseguradoraInmueble`, `propietarioVehiculo`, `conductorVehiculo`, `descripcionTipoVehiculo`, 
-`marcaVehiculo`, `modeloVehiculo`, `placasVehiculo`, `velorAproximadoVehiculo`, `perdidasAproximadoVehiculo`, 
+`marcaVehiculo`, `modeloVehiculo`, `placasVehiculo`, `valorAproximadoVehiculo`, `perdidasAproximadoVehiculo`, 
 `compañiaAseguradoraVehiculo`, `fkTelefonista`, `fkPiloto`, `fkPersonalDestacado`, `fkUnidadUtilizada`) 
 VALUES ('$controlCorrelativo','$fechaActual','$horaActual',
 'PENDIENTE','PENDIENTE','$nombreSolicitante',
 '$telefono','$motivoLlamado','$direccionSolicitante','$observaciones',
 'PENDIENTE','PENDIENTE',
-'PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE',
+'25 CIA','PENDIENTE','25 CIA','PENDIENTE','PENDIENTE','PENDIENTE',
 'PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE',
 'PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE','PENDIENTE',
 'PENDIENTE','$telefonistaId','1','1','1')";   

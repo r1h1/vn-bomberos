@@ -61,6 +61,14 @@ if ($varsesion == null || $varsesion = '') {
 
 <body>
 
+    <style>
+        body{
+            border: 1px solid;
+            border-color: #000000;
+            padding: 2px;
+        }
+    </style>
+
     <header class="mt-3 container">
         <div class="row">
             <div class="col-md-2">
@@ -177,7 +185,7 @@ if ($varsesion == null || $varsesion = '') {
 
     <?php
     }
-    
+
     ?>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>

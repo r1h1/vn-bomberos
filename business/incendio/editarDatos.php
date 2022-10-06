@@ -5,7 +5,6 @@ include('../../data/conection.php');
 
 error_reporting(0);
 
-
 $idEdicion = $_POST['idEdicionID'];
 $fechaEdicion = $_POST['fechaEdicion'];
 $horaEdicion = $_POST['horaEdicion'];
@@ -16,30 +15,29 @@ $motivoLlamado = $_POST['motivoLlamado'];
 $direccionSolicitante = $_POST['direccionSolicitante'];
 $observaciones = $_POST['observaciones'];
 $minutosTrabajados = $_POST['minutosTrabajados'];
-$llamadaRecibidaDe = $_POST[''];
-$salidaEstacion = $_POST[''];
-$horaSalidaEstacion = $_POST[''];
-$entradaEstacion = $_POST[''];
-$horaEntradaEstacion = $_POST[''];
-$propietarioInmueble = $_POST[''];
-$sitioDondePrincipioElIncendio = $_POST[''];
-$causasIncendio = $_POST[''];
-$valorAproximadoInmueble = $_POST[''];
-$montoAproximadoPerdidasInmueble = $_POST[''];
-$compañiaAseguradoraInmueble = $_POST[''];
-$propietarioVehiculo = $_POST[''];
-$conductorVehiculo = $_POST[''];
-$descripcionTipoVehiculo = $_POST[''];
-$marcaVehiculo = $_POST[''];
-$modeloVehiculo = $_POST[''];
-$placasVehiculo = $_POST[''];
-$valorAproximadoVehiculo = $_POST[''];
-$perdidasAproximadoVehiculo = $_POST[''];
-$compañiaAseguradoraVehiculo = $_POST[''];
-$fkTelefonista = $_POST[''];
-$fkPiloto = $_POST[''];
-$fkPersonalDestacado = $_POST[''];
-$fkUnidadUtilizada = $_POST[''];
+$llamadaRecibidaDe = $_POST['llamadaRecibidaDe'];
+$salidaEstacion = $_POST['salidaEstacion'];
+$horaSalidaEstacion = $_POST['horaSalidaEstacion'];
+$entradaEstacion = $_POST['entradaEstacion'];
+$horaEntradaEstacion = $_POST['horaEntradaEstacion'];
+$propietarioInmueble = $_POST['propietarioInmueble'];
+$sitioDondePrincipioElIncendio = $_POST['sitiodondePrincipioElIncendio'];
+$causasIncendio = $_POST['causasIncendio'];
+$valorAproximadoInmueble = $_POST['valorAproximadoInmueble'];
+$montoAproximadoPerdidasInmueble = $_POST['montoAproximadoPerdidasInmueble'];
+$compañiaAseguradoraInmueble = $_POST['compañiaAseguradoraInmueble'];
+$propietarioVehiculo = $_POST['propietarioVehiculo'];
+$conductorVehiculo = $_POST['conductorVehiculo'];
+$descripcionTipoVehiculo = $_POST['descripcionTipoVehiculo'];
+$marcaVehiculo = $_POST['marcaVehiculo'];
+$modeloVehiculo = $_POST['modeloVehiculo'];
+$placasVehiculo = $_POST['placasVehiculo'];
+$valorAproximadoVehiculo = $_POST['valorAproximadoVehiculo'];
+$perdidasAproximadoVehiculo = $_POST['perdidasAproximadoVehiculo'];
+$compañiaAseguradoraVehiculo = $_POST['compañiaAseguradoraVehiculo'];
+$fkPiloto = $_POST['fkPiloto'];
+$fkPersonalDestacado = $_POST['fkPersonalDestacado'];
+$fkUnidadUtilizada = $_POST['fkUnidadUtilizada'];
 
 
 $query = "UPDATE `llamado_incendio` SET `controlCorrelativo`='$controlCorrelativo',
@@ -50,15 +48,15 @@ $query = "UPDATE `llamado_incendio` SET `controlCorrelativo`='$controlCorrelativ
 `llamadaRecibidaDe`='$llamadaRecibidaDe',
 `horaSalidaEstacion`='$horaSalidaEstacion',
 `horaEntradaEstacion`='$horaEntradaEstacion',`propietarioInmueble`='$propietarioInmueble',
-`sitioDondePrincipioElIncendio`='[value-19]',`causasIncendio`='[value-20]',
-`valorAproximadoInmueble`='[value-21]',`montoAproximadoPerdidasInmueble`='[value-22]',
-`compañiaAseguradoraInmueble`='[value-23]',`propietarioVehiculo`='[value-24]',
-`conductorVehiculo`='[value-25]',`descripcionTipoVehiculo`='[value-26]',
-`marcaVehiculo`='[value-27]',`modeloVehiculo`='[value-28]',`placasVehiculo`='[value-29]',
-`valorAproximadoVehiculo`='[value-30]',`perdidasAproximadoVehiculo`='[value-31]',
-`compañiaAseguradoraVehiculo`='[value-32]',`fkTelefonista`='[value-33]',
-`fkPiloto`='[value-34]',`fkPersonalDestacado`='[value-35]',
-`fkUnidadUtilizada`='[value-36]' 
+`sitioDondePrincipioElIncendio`='$sitioDondePrincipioElIncendio',`causasIncendio`='$causasIncendio',
+`valorAproximadoInmueble`='$valorAproximadoInmueble',`montoAproximadoPerdidasInmueble`='$montoAproximadoPerdidasInmueble',
+`compañiaAseguradoraInmueble`='$compañiaAseguradoraInmueble',`propietarioVehiculo`='$propietarioVehiculo',
+`conductorVehiculo`='$conductorVehiculo',`descripcionTipoVehiculo`='$descripcionTipoVehiculo',
+`marcaVehiculo`='$marcaVehiculo',`modeloVehiculo`='$modeloVehiculo',`placasVehiculo`='$placasVehiculo',
+`valorAproximadoVehiculo`='$valorAproximadoVehiculo',`perdidasAproximadoVehiculo`='$perdidasAproximadoVehiculo',
+`compañiaAseguradoraVehiculo`='$compañiaAseguradoraVehiculo',
+`fkPiloto`='$fkPiloto',`fkPersonalDestacado`='$fkPersonalDestacado',
+`fkUnidadUtilizada`='$fkUnidadUtilizada' 
 WHERE `idLlamado`='$idEdicion'";
 
 
