@@ -59,7 +59,7 @@ if ($varsesion == null || $varsesion = '') {
 </head>
 
 <body>
-    <!-- top navigation bar -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border border-2">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
@@ -187,55 +187,67 @@ if ($varsesion == null || $varsesion = '') {
                             <h6 class="mt-2">Agregar Nuevo Llamado</h6>
                         </div>
                         <div class="card-body">
-                            <form action="" class="row mt-2">
+                            <form action="../../business/incendio/insertarDatos.php" method="POST" class="row mt-2">
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Control Correlativo</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="controlCorrelativo" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-6 mt-4">
                                     <label for="" class="form-label">Fecha Actual (Sistema)</label>
-                                    <input type="text" class="form-control" required readonly id="fechaActual" />
+                                    <input type="text" class="form-control" required readonly id="fechaActual" name="fechaGeneracion" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-6 mt-4">
                                     <label for="" class="form-label">Hora Actual (Sistema)</label>
-                                    <input type="text" class="form-control" required readonly id="horaActual" />
+                                    <input type="text" class="form-control" required readonly id="horaActual" name="horaGeneracion" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Telefonista *</label>
-                                    <select class="form-select" aria-label="Default select example" required>
+                                    <select class="form-select" aria-label="Default select example" required name="telefonista">
                                         <option value="">Seleccione uno...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <?php
+
+                                        include('../../data/conection.php');
+
+                                        $query = "CALL consultarTodosLosDatosPersonal();";
+                                        $result = mysqli_query($conexion, $query);
+
+                                        while ($mostrar = mysqli_fetch_array($result)) {
+
+                                        ?>
+                                            <option value="<?php echo $mostrar['idPersona'] ?>"><?php echo $mostrar['nombreCompleto'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
+
                                 </div>
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Nombre del Solicitante *</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="nombreSolicitante" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Motivo del Llamado *</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="motivoLlamado" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Dirección Solicitante*</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="direccionSolicitante" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Teléfono *</label>
-                                    <input type="number" class="form-control" required />
+                                    <input type="number" class="form-control" min="0" required name="telefono" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Observaciones *</label>
-                                    <textarea class="form-control" maxlength="249" style="height: 160px" required></textarea>
+                                    <textarea class="form-control" style="height: 160px" maxlength="400" required name="observaciones"></textarea>
                                 </div>
 
                                 <div class="col-md-12 mt-4">
@@ -262,7 +274,7 @@ if ($varsesion == null || $varsesion = '') {
 
                                             <input type="text" class="form-control mt-2" aria-label="Buscar por" placeholder="Busca aquí..." id="datoABuscar" name="search" />
                                             <button type="submit" class="btn btn-secondary mt-2" name="btnBuscar"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                            <a href="personal.php" class="btn btn-primary mt-2 ms-2" type="button">Ver Todo</a>
+                                            <a href="incendio.php" class="btn btn-primary mt-2 ms-2" type="button">Ver Todo</a>
 
                                         </div>
                                     </form>
@@ -273,7 +285,6 @@ if ($varsesion == null || $varsesion = '') {
                                         <thead>
                                             <tr>
                                                 <th scope="col">Código Correlativo</th>
-                                                <th scope="col">Telefonista</th>
                                                 <th scope="col">Fecha Creación</th>
                                                 <th scope="col">Hora Creación</th>
                                                 <th scope="col">Solicitante</th>
@@ -289,17 +300,43 @@ if ($varsesion == null || $varsesion = '') {
                                             <tr>
                                                 <?php
 
+
                                                 include('../../data/conection.php');
 
-                                                $query = "CALL consultarTodasLasLlamadasAmbulancia();";
+                                                if (isset($_GET['btnBuscar'])) {
+
+                                                    $dato = $_GET['search'];
+
+                                                    $query = "SELECT * FROM llamado_incendio WHERE controlCorrelativo LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR fechaGeneracion LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR horaGeneracion LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR nombreSolicitante LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR direccionSolicitante LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR telefonoSolicitante LIKE CONCAT('%', '$dato' , '%')
+                                                                                                OR motivoLlamadoSolicitante LIKE CONCAT('%', '$dato' , '%');";
+                                                } else {
+
+                                                    $query = "SELECT llamado.idLlamado,llamado.controlCorrelativo,
+                                                    llamado.fechaGeneracion, llamado.horaGeneracion,
+                                                    llamado.nombreSolicitante,llamado.telefonoSolicitante, 
+                                                    llamado.motivoLlamadoSolicitante,llamado.direccionSolicitante, 
+                                                    llamado.observaciones,llamado.fkTelefonista,personal.nombreCompleto 
+                                                    FROM `llamado_incendio` llamado 
+                                                    INNER JOIN personal_estacion personal ON personal.idPersona = llamado.fkTelefonista 
+                                                    WHERE personal.nombreCompleto = '$varnombre' ORDER BY llamado.fechaGeneracion DESC;";
+                                                }
+
                                                 $result = mysqli_query($conexion, $query);
+
+                                                while (mysqli_next_result($conexion)) {;
+                                                }
+
 
                                                 while ($mostrar = mysqli_fetch_array($result)) {
 
                                                 ?>
                                                     <td hidden><?php echo $mostrar['idLlamado']; ?></td>
                                                     <td><?php echo $mostrar['controlCorrelativo']; ?></td>
-                                                    <td><?php echo $mostrar['nombreCompleto']; ?></td>
                                                     <td><?php echo $mostrar['fechaGeneracion']; ?></td>
                                                     <td><?php echo $mostrar['horaGeneracion']; ?></td>
                                                     <td><?php echo $mostrar['nombreSolicitante']; ?></td>
@@ -341,7 +378,6 @@ if ($varsesion == null || $varsesion = '') {
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <footer>
@@ -352,8 +388,9 @@ if ($varsesion == null || $varsesion = '') {
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../../js/jquery-3.5.1.js"></script>
     <script src="../../js/script.js"></script>
+    <script src="../../js/components/incendio.js"></script>
     <script>
-        setInterval(traerHoraYFechaDelDia, 1000);
+        setInterval(traerHoraYFechaDelDia, 100);
     </script>
 </body>
 

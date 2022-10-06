@@ -25,7 +25,7 @@ INSERT INTO `personal_estacion`(`nombreCompleto`, `noIdentificacion`,
 `contrasena`, `rolPermisos`) 
 VALUES ('Administrador Default','1234567890','PENDIENTE DE EDICION',
 'PENDIENTE DE EDICION','PENDIENTE DE EDICION','PENDIENTE DE EDICION',
-'PENDIENTE DE EDICION','admin','Admin123BomberosV$');
+'admin','Admin123BomberosV$','admin');
 
 
 
@@ -96,18 +96,26 @@ create table llamado_incendio(
     direccionSolicitante varchar(250),
     observaciones varchar(500),
     minutosTrabajados int,
+    llamadaRecibidaDe varchar(150),
     salidaEstacion varchar(100) default '25 CIA',
     horaSalidaEstacion varchar(100),
     entradaEstacion varchar(100) default '25 CIA',
     horaEntradaEstacion varchar(100),
-    cantidadPacientesAtendidos int,
-    nombrePacienteAtendido varchar(100),
-    cantidadDeFallecidos int,
-    fallecidosEnIncidente varchar(250),
-    edadPaciente varchar(250),
-    nombreAcompañantePaciente varchar(150),
-    tipoDeServicioProporcionado varchar(150),
-    trasladoHacia varchar(150),
+    propietarioInmueble varchar(250),
+    sitioDondePrincipioElIncendio varchar(250),
+    causasIncendio varchar(250),
+    valorAproximadoInmueble varchar(250),
+    montoAproximadoPerdidasInmueble varchar(250),
+    compañiaAseguradoraInmueble varchar(250),
+    propietarioVehiculo varchar(250),
+    conductorVehiculo varchar(250),
+    descripcionTipoVehiculo varchar(250),
+    marcaVehiculo varchar(250),
+    modeloVehiculo varchar(250),
+    placasVehiculo varchar(250),
+    valorAproximadoVehiculo varchar(250),
+    perdidasAproximadoVehiculo varchar(250),
+    compañiaAseguradoraVehiculo varchar(250),
     fkTelefonista int,
     fkPiloto int,
     fkPersonalDestacado int,
@@ -178,21 +186,6 @@ create table llamado_servicios_varios(
     foreign key (fkPiloto) references personal_estacion(idPersona),
     foreign key (fkPersonalDestacado) references personal_estacion(idPersona),
     foreign key (fkUnidadUtilizada) references unidades_estacion(idUnidad)
-);
-
-
-create table llamado_general(
-	idLlamadoGeneral int primary key not null auto_increment,
-    fkLlamadoAmbulancia int,
-    fkLlamadoIncendio int,
-    fkLlamadoRescate int,
-    fkServiciosVarios int,
-    fechaActual varchar(150),
-    horaActual varchar(150),
-    foreign key (fkLlamadoAmbulancia) references llamado_ambulancia(idLlamado),
-    foreign key (fkLlamadoIncendio) references llamado_incendio(idLlamado),
-    foreign key (fkLlamadoRescate) references llamado_rescate(idLlamado),
-    foreign key (fkServiciosVarios) references llamado_servicios_varios(idLlamado)
 );
 
 
@@ -309,7 +302,7 @@ DELIMITER //
 create procedure consultarTodosLosDatosPersonal(
 )
 begin
-	SELECT * FROM `personal_estacion` WHERE nombreCompleto NOT IN ('PENDIENTE DE EDICION');
+	SELECT * FROM `personal_estacion` WHERE codigo NOT IN ('PENDIENTE DE EDICION');
 end //
 DELIMITER ;
 

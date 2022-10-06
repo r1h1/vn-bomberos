@@ -113,7 +113,7 @@ if ($varsesion == null || $varsesion = '') {
 
         <main class="container mt-4">
             <div class="row">
-                <div class="col-sm-6 col-md-6">
+                <div class="col">
                     <p class="h6">Control: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['controlCorrelativo']; ?></span></p>
                     <p class="h6">Teléfono: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['telefonoSolicitante']; ?></span></p>
                     <p class="h6">Personal: ______</p>
@@ -126,7 +126,7 @@ if ($varsesion == null || $varsesion = '') {
                     <p class="h6">Personal Destacado: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[26]; ?></span></p>
                 </div>
 
-                <div class="col-sm-6 col-md-6">
+                <div class="col">
                     <p class="h6">Minutos Trabajados: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['minutosTrabajados']; ?></span></p>
                     <p class="h6">Fecha: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['fechaGeneracion']; ?></span></p>
                     <p class="h6">Edad(es): <span class="ms-3 text-decoration-underline"><?php echo $mostrar['edadPaciente']; ?></span></p>
@@ -139,24 +139,24 @@ if ($varsesion == null || $varsesion = '') {
                     <p class="h6">Piloto(s): <span class="ms-3 text-decoration-underline"><?php echo $mostrar[25]; ?></span></p>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-6 mt-4">
                     <p class="h6">Observaciones: </p>
                     <textarea class="form-control" style="height: 140px" maxlength="400" readonly><?php echo $mostrar['observaciones']; ?></textarea>
                 </div>
 
-                <div class="col-sm-6 col-md-6 mt-3">
-                    <p class="h6">Reporte Formulado Por: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[24]; ?></span></p>
+                <div class="col mt-4">
+                    <p class="h6">Reporte Por: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[24]; ?></span></p>
                     <p class="h6">Es conforme el Piloto: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[25]; ?></span></p>
-                    <p class="h6">Vo.Bo. Jefe de Servicio: <span class="ms-3"><?php echo "_______________________" ?></span></p>
+                    <p class="h6">Vo.Bo. Jefe de Servicio: <span class="ms-3"></span></p>
                 </div>
 
-                <div class="col-sm-6 col-md-6 mt-3">
+                <div class="col mt-4">
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
                 </div>
 
-                <div class="col-md-12 mt-2">
+                <div class="col-md-12 mt-5">
                     <p class="h6">Razón: La Secretaría Ejecutiva del Cuerpo, para que conste que en esta fecha
                         y a solicitud de esta fecha se extiende copia certificada de este, reporta a Sr.(a)(ita): </p>
                     <p class="mt-3">___________________________________________________________________</p>
@@ -179,10 +179,6 @@ if ($varsesion == null || $varsesion = '') {
     }
     
     ?>
-
-    <footer class="container text-end">
-        <p class="mb-2">Fecha de Generación: <?php echo $fechaActual; ?></p>
-    </footer>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>

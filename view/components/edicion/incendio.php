@@ -16,7 +16,6 @@ if ($varsesion == null || $varsesion = '') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,7 +37,7 @@ if ($varsesion == null || $varsesion = '') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="icon" href="../../img/log.png" />
+    <link rel="icon" href="../../../img/log.png" />
 
     <!-- Font type -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,12 +52,12 @@ if ($varsesion == null || $varsesion = '') {
     <!-- SweetAlert2 Library -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="../../css/general.css" />
-    <title>Incendio - Bomberos Voluntarios</title>
+    <link rel="stylesheet" href="../../../css/general.css" />
+    <title>Edicion Llamado Incendio - Bomberos Voluntarios</title>
 </head>
 
 <body>
-    <!-- top navigation bar -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border border-2">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
@@ -176,140 +175,273 @@ if ($varsesion == null || $varsesion = '') {
         <div class="container-sm mx-auto">
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <h5 class="fw-bold">Incendio</h5>
+                    <h5 class="fw-bold">Edición de Llamadas - Incendio</h5>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
                     <div class="card bg-nav text-dark h-auto stretch-card">
                         <div class="card-header bg-secondary text-light">
                             <h6 class="mt-2">Agregar Nuevo Llamado</h6>
                         </div>
                         <div class="card-body">
-                            <form action="" class="row mt-2">
 
-                                <div class="col-md-12 col-lg-12 mt-4">
+                            <?php
+
+                            include("../../../data/conection.php");
+
+                            //error_reporting(0);
+
+                            $idEdicion = $_GET['search'];
+
+                            $sql = "SELECT * FROM `llamado_incendio` WHERE idLlamado = '$idEdicion';";
+
+                            $result = mysqli_query($conexion, $sql);
+
+                            while (mysqli_next_result($conexion)) {;
+                            }
+
+                            while ($mostrar = mysqli_fetch_array($result)) {
+                                $controlCorrelativo = $mostrar[1];
+                                $nombreSolicitante = $mostrar[6];
+                                $telefonoSolicitante = $mostrar[7];
+                                $motivoLlamadoSolicitante = $mostrar[8];
+                                $direccionSolicitante = $mostrar[9];
+                                $observaciones = $mostrar[10];
+                            }
+
+                            ?>
+
+                            <form action="../../../business/incendio/editarDatos.php" method="POST" class="row mt-2">
+
+                                <input type="text" class="form-control" value="<?php echo $idEdicion ?>" name="idEdicionID" hidden />
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Fecha (Sistema)</label>
+                                    <input type="text" class="form-control" required readonly id="fechaActual" name="fechaEdicion" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Hora (Sistema)</label>
+                                    <input type="text" class="form-control" required readonly id="horaActual" name="horaEdicion" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
                                     <label for="" class="form-label">Control Correlativo</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required value="<?php echo $controlCorrelativo; ?>" name="controlCorrelativo" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-6 mt-4">
-                                    <label for="" class="form-label">Fecha Actual (Sistema)</label>
-                                    <input type="text" class="form-control" required readonly id="fechaActual" />
-                                </div>
-
-                                <div class="col-md-12 col-lg-6 mt-4">
-                                    <label for="" class="form-label">Hora Actual (Sistema)</label>
-                                    <input type="text" class="form-control" required readonly id="horaActual" />
-                                </div>
-
-                                <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Telefonista *</label>
-                                    <select class="form-select" aria-label="Default select example" required>
-                                        <option value="">Seleccione uno...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <?php
+
+                                    $sql = "SELECT llamada.fkTelefonista,personal.nombreCompleto 
+                                    FROM `llamado_rescate` llamada
+                                    INNER JOIN personal_estacion personal ON llamada.fkTelefonista = personal.idPersona
+                                    WHERE llamada.idLlamado = '$idEdicion';";
+
+                                    $result = mysqli_query($conexion, $sql);
+
+                                    while ($mostrar = mysqli_fetch_array($result)) {
+                                        $fkTelefonista = $mostrar['fkTelefonista'];
+                                        $nombre = $mostrar['nombreCompleto'];
+                                    }
+                                    ?>
+                                    <input type="text" class="form-control" value="<?php echo $fkTelefonista; ?>" name="fkTelefonista" hidden>
+                                    <input type="text" class="form-control" value="<?php echo $nombre; ?>" readonly />
                                 </div>
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Nombre del Solicitante *</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="nombreSolicitante" value="<?php echo $nombreSolicitante; ?>" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Motivo del Llamado *</label>
-                                    <input type="text" class="form-control" required />
+                                    <input type="text" class="form-control" required name="motivoLlamado" value="<?php echo $motivoLlamadoSolicitante; ?>" />
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
-                                    <label for="" class="form-label">Dirección Solicitante*</label>
-                                    <input type="text" class="form-control" required />
+                                    <label for="" class="form-label">Dirección Solicitante *</label>
+                                    <input type="text" class="form-control" required name="direccionSolicitante" value="<?php echo $direccionSolicitante; ?>" />
                                 </div>
 
-                                <div class="col-md-12 col-lg-12 mt-4">
+                                <div class="col-md-12 col-lg-6 mt-4">
                                     <label for="" class="form-label">Teléfono *</label>
-                                    <input type="number" class="form-control" required />
+                                    <input type="number" class="form-control" min="0" required name="telefono" value="<?php echo $telefonoSolicitante; ?>" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Minutos Trabajados *</label>
+                                    <input type="number" class="form-control" min="0" required name="minutosTrabajados" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Llamada Recibida De *</label>
+                                    <input type="text" class="form-control" required name="llamadaRecibidaDe" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Hora de Salida (Estación) *</label>
+                                    <input type="time" class="form-control" required name="horaSalidaEstacion" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Hora de Entrada (Estación) *</label>
+                                    <input type="time" class="form-control" required name="horaEntradaEstacion" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Causas Incendio *</label>
+                                    <input type="text" class="form-control" required name="causasIncendio" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Propietario Inmueble *</label>
+                                    <input type="text" class="form-control" name="propietarioInmueble" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Sitio Donde Principió El Incendio *</label>
+                                    <input type="text" class="form-control" name="sitioDondePrincipioElIncendio" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Valor Aprox. Inmueble *</label>
+                                    <input type="text" class="form-control" name="valorAproximadoInmueble" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Monto Aprox. Perdidas Inmueble *</label>
+                                    <input type="text" class="form-control" name="montoAproximadoPerdidasInmueble" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Compañia Aseguradora Inmueble *</label>
+                                    <input type="text" class="form-control" name="compañiaAseguradoraInmueble" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Propietario Vehiculo *</label>
+                                    <input type="text" class="form-control" name="propietarioVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Conductor Vehículo *</label>
+                                    <input type="text" class="form-control" name="conductorVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Descripcion Tipo Vehiculo *</label>
+                                    <input type="text" class="form-control" name="descripcionTipoVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Marca Vehiculo *</label>
+                                    <input type="text" class="form-control" name="marcaVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Modelo Vehiculo *</label>
+                                    <input type="text" class="form-control" name="modeloVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Placas Vehiculo *</label>
+                                    <input type="text" class="form-control" name="placasVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Valor Aprox. Vehiculo *</label>
+                                    <input type="text" class="form-control" name="valorAproximadoVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Perdidas Aprox. Vehiculo *</label>
+                                    <input type="text" class="form-control" name="perdidasAproximadoVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Compañia Aseguradora Vehículo *</label>
+                                    <input type="text" class="form-control" name="compañiaAseguradoraVehiculo" />
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Piloto *</label>
+                                    <select class="form-select" aria-label="Default select example" required name="fkPiloto">
+                                        <option value="">Seleccione uno...</option>
+                                        <?php
+
+                                        include('../../../data/conection.php');
+
+                                        $query = "CALL consultarTodosLosDatosPersonal();";
+                                        $result = mysqli_query($conexion, $query);
+
+                                        while ($mostrar = mysqli_fetch_array($result)) {
+
+                                        ?>
+                                            <option value="<?php echo $mostrar['idPersona'] ?>">
+                                                <?php echo $mostrar['codigo'] . ' - ' . $mostrar['nombreCompleto']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Personal Destacado *</label>
+                                    <select class="form-select" aria-label="Default select example" required name="fkPersonalDestacado">
+                                        <option value="">Seleccione uno...</option>
+                                        <?php
+
+                                        include('../../../data/conection.php');
+
+                                        $query = "CALL consultarTodosLosDatosPersonal();";
+                                        $result = mysqli_query($conexion, $query);
+
+                                        while ($mostrar = mysqli_fetch_array($result)) {
+
+                                        ?>
+                                            <option value="<?php echo $mostrar['idPersona'] ?>">
+                                                <?php echo $mostrar['codigo'] . ' - ' . $mostrar['nombreCompleto']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <label for="" class="form-label">Unidad Utilizada *</label>
+                                    <select class="form-select" aria-label="Default select example" required name="fkUnidadUtilizada">
+                                        <option value="">Seleccione uno...</option>
+                                        <?php
+
+                                        include('../../../data/conection.php');
+
+                                        $query = "CALL consultarTodosLosDatosUnidades();";
+                                        $result = mysqli_query($conexion, $query);
+
+                                        while ($mostrar = mysqli_fetch_array($result)) {
+
+                                        ?>
+                                            <option value="<?php echo $mostrar['idUnidad'] ?>"><?php echo $mostrar['codigoUnidad'] . ' - ' . $mostrar['nombreUnidad']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mt-4">
                                     <label for="" class="form-label">Observaciones *</label>
-                                    <textarea class="form-control" style="height: 160px" required></textarea>
+                                    <textarea class="form-control" style="height: 200px" maxlength="400" name="observaciones"><?php echo $observaciones; ?></textarea>
                                 </div>
 
                                 <div class="col-md-12 mt-4">
-                                    <button type="submit" class="btn btn-success mb-2">
-                                        <i class="fa-solid fa-floppy-disk"></i> Guardar
+                                    <button type="submit" class="btn btn-warning mb-2 w-auto">
+                                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <div class="card bg-nav text-dark h-auto stretch-card">
-                        <div class="card-header bg-success text-light">
-                            <h6 class="mt-2">Mantenimiento y Búsqueda de Llamados</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="" class="form-label mt-4">Filtrar por</label>
-                                    <select class="form-select form-select-sm mt-2" aria-label="Default select example" name="filtrarPor">
-                                        <option value="">Seleccione...</option>
-                                        <option value="1">Ascendente</option>
-                                        <option value="2">Descendente</option>
-                                        <option value="3">A-Z</option>
-                                        <option value="4">Z-A</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="" class="form-label mt-4">Buscar por</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Buscar por" name="buscarPor" />
-                                </div>
-                            </div>
-
-                            <div class="botones-exportar mt-4">
-                                <a href="#" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i>
-                                    Generar Reporte</a>
-                            </div>
-
-                            <div class="table-responsive mt-4">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Atendió</th>
-                                            <th scope="col">Fecha de Creación</th>
-                                            <th scope="col">Hora de Creación</th>
-                                            <th scope="col">Solicitante</th>
-                                            <th scope="col">Dirección</th>
-                                            <th scope="col">Número de Teléfono</th>
-                                            <th scope="col">Motivo</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Eliminar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <a href="#" class="btn btn-success"><i class="fa-solid fa-pen"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -321,12 +453,12 @@ if ($varsesion == null || $varsesion = '') {
         <!--nada-->
     </footer>
 
-    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="../../js/jquery-3.5.1.js"></script>
-    <script src="../../js/script.js"></script>
+    <script src="../../../js/jquery-3.5.1.js"></script>
+    <script src="../../../js/script.js"></script>
     <script>
-        setInterval(traerHoraYFechaDelDia, 1000);
+        setInterval(traerHoraYFechaDelDia, 100);
     </script>
 </body>
 
