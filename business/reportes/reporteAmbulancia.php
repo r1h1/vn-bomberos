@@ -134,7 +134,7 @@ if ($varsesion == null || $varsesion = '') {
                     <p class="h6">Personal Destacado: <span class="ms-3 text-decoration-underline"><?php echo $mostrar[26]; ?></span></p>
                 </div>
 
-                <div class="col">
+                <div class="col text-end">
                     <p class="h6">Minutos Trabajados: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['minutosTrabajados']; ?></span></p>
                     <p class="h6">Fecha: <span class="ms-3 text-decoration-underline"><?php echo $mostrar['fechaGeneracion']; ?></span></p>
                     <p class="h6">Edad(es): <span class="ms-3 text-decoration-underline"><?php echo $mostrar['edadPaciente']; ?></span></p>
@@ -158,7 +158,7 @@ if ($varsesion == null || $varsesion = '') {
                     <p class="h6">Vo.Bo. Jefe de Servicio: <span class="ms-3"></span></p>
                 </div>
 
-                <div class="col mt-4">
+                <div class="col mt-4 text-end">
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
                     <p class="h6">(f) ___________________________</p>
