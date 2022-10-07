@@ -176,7 +176,7 @@ if ($varsesion == null || $varsesion = '') {
         <div class="container-sm mx-auto">
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <h5 class="fw-bold">Estadísticas</h5>
+                    <h5 class="fw-bold">Estadísticas Generales</h5>
                 </div>
             </div>
 
@@ -185,66 +185,32 @@ if ($varsesion == null || $varsesion = '') {
                     <h6 class="mt-2">Mantenimiento y Búsqueda de Llamados</h6>
                 </div>
                 <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-md-6 col-lg-3">
-                            <label for="" class="form-label mt-4">Filtrar por</label>
-                            <select class="form-select form-select-sm mt-2" aria-label="Default select example" name="filtrarPor">
-                                <option value="">Seleccione...</option>
-                                <option value="3">Ambulancia</option>
-                                <option value="4">Incendio</option>
-                                <option value="5">Rescate</option>
-                                <option value="6">Servicios Varios</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <label for="" class="form-label mt-4">Fecha de Inicio</label>
-                            <input type="date" class="form-control" />
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <label for="" class="form-label mt-4">Fecha Final</label>
-                            <input type="date" class="form-control" />
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <label for="" class="form-label mt-4">Buscar por</label>
-                            <input type="text" class="form-control" placeholder="" aria-label="Buscar por" name="buscarPor" />
-                        </div>
-                    </div>
 
-                    <div class="botones-exportar">
-                        <a href="#" class="btn btn-success mt-4"><i class="fa-solid fa-file-excel"></i>
-                            Exportar Registros</a>
-                    </div>
+                    <form action="" method="GET" class="row g-3">
+                        <div class="col-md-8 col-lg-8">
+                            <label for="" class="form-label mt-4">Opciones de Búsqueda</label>
+                            <div class="input-group mb-3">
+                                <select class="form-select form-select-sm mt-2" aria-label="Default select example" name="categoria" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="1">Ambulancia</option>                                    
+                                    <option value="3">Rescate</option>
+                                    <option value="4">Servicios Varios</option>
+                                    <option value="2">Incendio</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2" name="buscarCategoria">
+                                    <i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                                <a href="estadistica.php" class="btn btn-warning mt-2 ms-2">Limpiar Datos</a>
+                            </div>
+                        </div>
+                    </form>
 
-                    <div class="table-responsive mt-5">
-                        <table class="table text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Fecha de Creación</th>
-                                    <th scope="col">Hora de Creación</th>
-                                    <th scope="col">Solicitante</th>
-                                    <th scope="col">Dirección</th>
-                                    <th scope="col">Número de Teléfono</th>
-                                    <th scope="col">Motivo</th>
-                                    <th scope="col">Reporte</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <a href="#" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+                    <?php
+
+                    include('../../business/estadisticas/listarDatos.php');
+
+                    ?>
+
                 </div>
                 <div class="card-footer mt-4">
                     <p class="mt-2 text-muted h6">En la pantalla estadística puedes ver un resumen general de todas las llamadas que se han registrado,
