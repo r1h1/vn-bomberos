@@ -14,7 +14,7 @@ charts.forEach(function (chart) {
             labels: ["Ambulancia", "Incendio", "Rescate", "Varios"],
             datasets: [
                 {
-                    label: "Llamadas ",
+                    label: "Cantidad",
                     data: [llamadoAmbulancia, llamadoIncendio, llamadoRescate, llamadoVarios],
                     backgroundColor: [
                         "rgba(255, 193, 7, 0.7)",
