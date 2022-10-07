@@ -1,4 +1,7 @@
 <div class="table-responsive mt-1">
+
+    <a href="../../business/matenimientobd/exportar_tablas_llamados/exportarDatosIncendio.php" class="btn btn-success">Exportar a Excel</a>
+
     <table class="table text-center">
         <thead>
             <tr>
@@ -107,7 +110,7 @@
                     <td><?php echo $observaciones ?></td>
                     <td></td>
                     <td class="text-center">
-                        <a href="../../view/components/edicion/ambulancia.php?search=<?php echo $idLlamado; ?>" class="btn btn-success">
+                        <a href="../../view/components/edicion/incendio.php?search=<?php echo $idLlamado; ?>" class="btn btn-success">
                             <i class="fa-solid fa-pen"></i></a>
                     </td>
             </tr>

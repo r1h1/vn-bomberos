@@ -1,4 +1,8 @@
 <div class="table-responsive mt-1">
+    
+    <a href="../../business/matenimientobd/exportar_tablas_llamados/exportarDatosAmbulancia.php"
+    class="btn btn-success">Exportar a Excel</a>
+
     <table class="table text-center">
         <thead>
             <tr>
