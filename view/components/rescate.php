@@ -350,7 +350,7 @@ if ($varsesion == null || $varsesion = '') {
                                                     <td><?php echo $mostrar['telefonoSolicitante']; ?></td>
                                                     <td><?php echo $mostrar['motivoLlamadoSolicitante']; ?></td>
                                                     <td class="text-center">
-                                                        <a href="#" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></a>
+                                                        <a href="../../business/reportes/reporteRescate.php?search=<?php echo $mostrar['idLlamado']; ?>" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></a>
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="edicion/rescate.php?search=<?php echo $mostrar['idLlamado']; ?>" class="btn btn-success">

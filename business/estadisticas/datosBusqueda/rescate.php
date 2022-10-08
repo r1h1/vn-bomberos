@@ -101,7 +101,8 @@
                     <td><?php echo $fkPersonalDestacado ?></td>
                     <td><?php echo $fkUnidadUtilizada ?></td>
                     <td><?php echo $observaciones ?></td>
-                    <td></td>
+                    <td class="text-center"><a href="../../business/reportes/reporteRescate.php?search=<?php echo $idLlamado; ?>"
+                    class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></a></td>
                     <td class="text-center">
                         <a href="../../view/components/edicion/rescate.php?search=<?php echo $idLlamado; ?>" class="btn btn-success">
                             <i class="fa-solid fa-pen"></i></a>

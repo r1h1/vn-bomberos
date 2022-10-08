@@ -1,7 +1,6 @@
 <div class="table-responsive mt-1">
-    
-    <a href="../../business/matenimientobd/exportar_tablas_llamados/exportarDatosAmbulancia.php"
-    class="btn btn-success">Exportar a Excel</a>
+
+    <a href="../../business/matenimientobd/exportar_tablas_llamados/exportarDatosAmbulancia.php" class="btn btn-success">Exportar a Excel</a>
 
     <table class="table text-center">
         <thead>
@@ -109,7 +108,8 @@
                     <td><?php echo $fkUnidadUtilizada ?></td>
                     <td><?php echo $tipoServicio ?></td>
                     <td><?php echo $observaciones ?></td>
-                    <td></td>
+                    <td class="text-center"><a href="../../business/reportes/reporteAmbulancia.php?search=<?php echo $idLlamado; ?>"
+                    class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></a></td>
                     <td class="text-center">
                         <a href="../../view/components/edicion/ambulancia.php?search=<?php echo $idLlamado; ?>" class="btn btn-success">
                             <i class="fa-solid fa-pen"></i></a>
